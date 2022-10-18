@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Browser Game</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body id="body">
+		<audio id="playerFireAudio" preload="auto" src="audio/pew.mp3"></audio>
+		<audio id="playerReloadAudio" preload="auto" src="audio/shotgunReload.mp3"></audio>
+		<audio id="playerReloadedAudio" preload="auto" src="audio/templeBell.mp3"></audio>
+		<audio id="playerWingAudio" preload="auto" src="audio/softerFlappingWings.mp3"></audio>
+		<audio id="playerHitAudio" preload="auto" src="audio/splat.mp3"></audio>
+		<audio id="bossHitAudio" preload="auto" src="audio/softerSplat.mp3"></audio>
+		<audio id="bossDistantCryAudio" preload="auto" src="audio/softerScreamingHawk.mp3"></audio>
+		<audio id="bossCloseCryAudio" preload="auto" src="audio/screamingHawk.mp3"></audio>
+		<audio id="bossPhase1Audio" preload="auto" src="audio/flappingWings.mp3"></audio>
+		<audio id="bossPhase2Audio" preload="auto" src="audio/missileAlert.mp3"></audio>
+		<audio id="bossPhase3Audio" preload="auto" src="audio/crazyBrain.mp3"></audio>
+		<audio id="bossExplodeAudio" preload="auto" src="audio/shrapnel.mp3"></audio>
+		<audio id="compBirdHitAudio" preload="auto" src="audio/softerSplat.mp3"></audio>
+		<audio id="compBirdCryAudio" preload="auto" src="audio/hawkCall.mp3"></audio>
+		<audio id="bossBulletDistantFireAudio" preload="auto" src="audio/softerLaserCannon.mp3"></audio>
+		<audio id="bossBulletCloseFireAudio" preload="auto" src="audio/laserCannon.mp3"></audio>
+		<audio id="bossBulletDeflectAudio" preload="auto" src="audio/jump.mp3"></audio>
+		<audio id="winAudio" preload="auto" src="audio/applause.mp3"></audio>
+		<main>
+			<div id="desktop">
+				<div id="game">
+					<div>
+						<canvas id="canvas" width="950" height="506"> </canvas>
+					</div>
+					<div id="buttons">
+						<div>
+							<button id="startButton" onclick="NewGame(); Blur()" tabindex="1">▶️</button>
+						</div>
+						<div>
+							<button id="audioButton" value="🔊" onclick="AudioButtonValue(); Blur()">🔊</button>
+						</div>
+						<div>
+							<button id="titleButton" onclick="CanvasTitle(); Blur()" tabindex="1">ℹ️</button>
+						</div>
+					</div>
+					<script src="script.js"></script>
+				</div>
+				<div id="credits">
+					<label for="expand">Show / Hide Credits</label>
+					<input type="checkbox" id="expand" />
+					<div id="info">
+						<ul>
+							<li>
+								<a href="https://webstockreview.net/image/cookout-clipart-vector/1132460.html">flying clipart icon 1132460</a>
+								by
+								<a href="https://webstockreview.net">https://webstockreview.net</a>, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed design for styling and
+								visual effects
+							</li>
+							<li>
+								<a href="https://soundbible.com/1079-Bir-Poop-Splat.html">Bir Poop Splat</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed
+								length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1713-Crazy-Brain.html">Crazy Brain</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed length,
+								pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/628-Flapping-Wings-3.html">Flapping Wings 3</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> /
+								Changed length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1481-Hawk-Call-2x.html">Hawk Call 2x</a> by PsychoBird, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed
+								length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1343-Jump.html">Jump</a> by snottyboy, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed length, pitch, speed,
+								and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1771-Laser-Cannon.html">Laser Cannon</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed
+								length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/2056-Missile-Alert.html">Missile Alert</a> by BOMB SIREN, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed
+								length, pitch, speed, and volume for audio effect
+							</li>
+							<li><a href="https://soundbible.com/1949-Pew-Pew.html">Pew Pew</a> by DKnight556 / Changed length, pitch, speed, and volume for audio effect</li>
+							<li>
+								<a href="https://soundbible.com/2075-RPG-Plus-Shrapnel.html">RPG Plus Shrapnel</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> /
+								Changed length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1517-Screaming-Hawk.html">Screaming Hawk</a> by PsychoBird, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed
+								length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1996-Shotgun-Reload-Old.html">Shotgun Reload Old</a> by RA The Sun God, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+								/ Changed length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1964-Small-Crowd-Applause.html">Small Crowd Applause</a> by Yannick Lemieux, used under
+								<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed length, pitch, speed, and volume for audio effect
+							</li>
+							<li>
+								<a href="https://soundbible.com/1531-Temple-Bell.html">Temple Bell</a> by Mike Koenig, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> / Changed length,
+								pitch, speed, and volume for audio effect
+							</li>
+							<li><a href="https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle">markE </a> for collision logic between circle and rectangle</li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection">MDN Web Docs </a> for collision logic between two circles</li>
+							<li><a href="https://spicyyoghurt.com/tutorials/html5-javascript-game-development/collision-detection-physics">Spicy Yoghurt </a> for collision logic between two rectangles</li>
+						</ul>
+						<h2><a href="https://github.com/dgee02/browser-game">GitHub Repo</a></h2>
+					</div>
+				</div>
+			</div>
+			<div id="mobile">
+				<h1>😞</h1>
+				<h2>Sorry, this game cannot be played on this screen size.</h2>
+				<h1><a href="https://github.com/dgee02/browser-game">GitHub Repo</a></h1>
+			</div>
+		</main>
+	</body>
+</html>
