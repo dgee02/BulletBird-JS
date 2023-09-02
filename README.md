@@ -4,9 +4,9 @@ A side-scrolling browser game made with JavaScript, HTML, and CSS.
 
 You play as a bird that can fire bullets. Win the game by defeating the boss.
 
-[Play it here.](https://dgee02.github.io/browser-game/)
+Check it out [here](https://dgee02.github.io/browser-game/).
 
-## Credits
+## Acknowledgements
 
 - [flying clipart icon 1132460](https://webstockreview.net/image/cookout-clipart-vector/1132460.html) by webstockreview.net, used under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) / Changed design for styling and visual effects
 - [Bir Poop Splat](https://soundbible.com/1079-Bir-Poop-Splat.html) by Mike Koenig, used under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) / Changed length, pitch, speed, and volume for audio effect

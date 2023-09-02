@@ -111,10 +111,10 @@ class Player {
 		this.fireRate = this.fireRateInitial;
 
 		//Number of bullets that can be fired in succession before having to reload
-		this.magazineInitial = 16;
+		this.magazineInitial = 15;
 		this.magazine = this.magazineInitial;
 
-		this.reloadTimerInitial = 300;
+		this.reloadTimerInitial = 225;
 		this.reloadTimer = this.reloadTimerInitial;
 		this.score = 0;
 		this.deathCause = '';
@@ -227,7 +227,7 @@ class Player {
 			brush.globalAlpha = this.pointerHUDOpacity.toFixed(3);
 			brush.textAlign = 'center';
 			brush.fillStyle = 'black';
-			brush.font = 'bold 35px Times New Roman';
+			brush.font = 'bold 40px Times New Roman';
 			brush.fillText('⬆️ PROGRESS TO THE BOSS', canvas.width * 0.5, canvas.height * 0.12);
 
 			//Two cases for this pointer since pointer would be cut-off if player was near bottom of canvas window
@@ -256,10 +256,10 @@ class Player {
 		brush.font = '22px Times New Roman';
 		if (this.y >= canvas.height - this.spriteHeight * 1.5) {
 			if (this.magazine > 0) brush.fillText(this.magazine + ' / ∞', this.x + this.spriteWidth * 0.45, this.y - this.spriteHeight * 0.15);
-			else brush.fillText('⟲ / ∞', this.x + this.spriteWidth * 0.45, this.y - this.spriteHeight * 0.15);
+			else brush.fillText('🔄️ / ∞', this.x + this.spriteWidth * 0.45, this.y - this.spriteHeight * 0.15);
 		} else {
 			if (this.magazine > 0) brush.fillText(this.magazine + ' / ∞', this.x + this.spriteWidth * 0.45, this.y + this.spriteHeight * 1.4);
-			else brush.fillText('⟲ / ∞', this.x + this.spriteWidth * 0.45, this.y + this.spriteHeight * 1.4);
+			else brush.fillText('🔄️ / ∞', this.x + this.spriteWidth * 0.45, this.y + this.spriteHeight * 1.4);
 		}
 
 		//Draw player's score
@@ -329,12 +329,12 @@ class Boss {
 		this.spriteHeight = 300;
 		this.spriteSpeedInitial = 14;
 		this.spriteSpeed = this.spriteSpeedInitial;
-		this.healthInitial = 60;
+		this.healthInitial = 39;
 		this.health = this.healthInitial;
 		this.healthBarOpacity = 0;
 
 		//Value stopwatch must reach before first phase of boss battle begins
-		this.phase1Start = 1980;
+		this.phase1Start = 1380;
 
 		//Values player must get boss's health down to before next phase of boss battle begins
 		this.phase2Start = this.healthInitial * (2 / 3);
@@ -438,7 +438,7 @@ class Boss {
 
 				//Draw points added to player's score if boss has fallen out of canvas window and none of boss's bullets are in canvas window
 				if (this.y > canvas.height && bossBulletsArray.length == 0 && !this.deathAddPointsSwitch) {
-					CreateAddPoints(this.x + this.spriteWidth * 0.1, canvas.height * 0.96, 2000, 1);
+					CreateAddPoints(this.x + this.spriteWidth * 0.1, canvas.height * 0.96, 3000, 1);
 
 					//Prevent infinite drawing of points added
 					this.deathAddPointsSwitch = true;
@@ -535,9 +535,9 @@ class CompBird {
 
 		this.spriteWidth = 75;
 		this.spriteHeight = 50;
-		this.spriteSpeedInitial = GetRandomNumber(4, 7);
+		this.spriteSpeedInitial = GetRandomNumber(2, 4);
 		this.spriteSpeed = this.spriteSpeedInitial;
-		this.healthInitial = 4;
+		this.healthInitial = 3;
 		this.health = this.healthInitial;
 		this.hitAudio = document.getElementById('compBirdHitAudio');
 		this.cryAudio = document.getElementById('compBirdCryAudio');
@@ -555,9 +555,8 @@ class CompBird {
 
 		//Draw different version of CPU controlled bird for each bullet it absorbs from player
 		if (this.health == this.healthInitial) brush.drawImage(this.imagePhase1, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
-		else if (this.health >= this.healthInitial * (3 / 4)) brush.drawImage(this.imagePhase2, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
-		else if (this.health >= this.healthInitial * (1 / 2)) brush.drawImage(this.imagePhase3, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
-		else brush.drawImage(this.imagePhase4, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
+		else if (this.health >= this.healthInitial * (1 / 2)) brush.drawImage(this.imagePhase2, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
+		else brush.drawImage(this.imagePhase3, this.spriteX, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
 
 		SpriteUpdater(this, this.imagePhase1.width);
 	}
@@ -965,10 +964,10 @@ function CreateBossBullet(x, y, dX, dY, createMultiples, symbolType, creationFre
 							if (i == -0.6) bossBullet.PlayCloseFireAudio();
 						}
 					} else {
-						for (let i = -5; i <= 5; i++) {
+						for (let i = -3; i <= 3; i++) {
 							let bossBullet = new BossBullet1(x, y, GetRandomNumber(-3, -1), i);
 							bossBulletsArray.push(bossBullet);
-							if (i == -5) bossBullet.PlayCloseFireAudio();
+							if (i == -3) bossBullet.PlayCloseFireAudio();
 						}
 					}
 					break;
@@ -986,7 +985,7 @@ function CreateCompBird() {
 		compBird.PlayCryAudio();
 
 		//Randomize timer for creation of next bird
-		createCompBirdInterval = GetRandomNumber(45, 90);
+		createCompBirdInterval = GetRandomNumber(60, 100);
 	} else createCompBirdInterval--;
 }
 
@@ -1212,7 +1211,7 @@ function LevelTracker() {
 	if (boss.health < boss.phase3Start) currentLevel = 5;
 	else if (boss.health < boss.phase2Start) currentLevel = 4;
 	else if (stopWatch >= boss.phase1Start) currentLevel = 3;
-	else if (stopWatch >= 1020) currentLevel = 2;
+	else if (stopWatch >= 650) currentLevel = 2;
 	else currentLevel = 1;
 }
 
@@ -1220,7 +1219,7 @@ function LevelTracker() {
 function LevelMaker() {
 	switch (currentLevel) {
 		case 1:
-			if (stopWatch == 880) boss.PlayDistantCryAudio();
+			if (stopWatch == 600) boss.PlayDistantCryAudio();
 			if (stopWatch > 280) CreateCompBird();
 			CanvasBackground();
 			player.Draw();
@@ -1234,7 +1233,7 @@ function LevelMaker() {
 			break;
 		case 2:
 			CreateCompBird();
-			CreateBossBullet(canvas.width + 100, GetRandomNumber(60, canvas.height - 60), -8, 0, false, 2, GetRandomNumber(90, 140));
+			CreateBossBullet(canvas.width + 100, GetRandomNumber(60, canvas.height - 60), -8, 0, false, 2, GetRandomNumber(110, 150));
 			CanvasBackground();
 			player.Draw();
 			DisplayBlood();
@@ -1248,7 +1247,7 @@ function LevelMaker() {
 			break;
 		case 3:
 			if (stopWatch == boss.phase1Start) boss.PlayCloseCryAudio();
-			if (stopWatch > boss.phase1Start + 240) CreateBossBullet(boss.x + 100, boss.y + 150, -8, GetRandomNumber(-3.5, 3.5), false, 2, GetRandomNumber(90, 140));
+			if (stopWatch > boss.phase1Start + 220) CreateBossBullet(boss.x + 100, boss.y + 150, -6, GetRandomNumber(-3.5, 3.5), false, 2, GetRandomNumber(110, 150));
 			CanvasBackground();
 			player.Draw();
 			DisplayBlood();
@@ -1264,7 +1263,7 @@ function LevelMaker() {
 			stopWatch++;
 			break;
 		case 4:
-			CreateBossBullet(boss.x + 120, boss.y + 160, null, null, true, null, 140);
+			CreateBossBullet(boss.x + 120, boss.y + 160, null, null, true, null, 180);
 			CanvasBackground();
 			player.Draw();
 			DisplayBlood();
@@ -1278,13 +1277,13 @@ function LevelMaker() {
 			boss.PlayPhase2Audio();
 			break;
 		case 5:
-			if (player.x > 0 && boss.deathAnimationTimer == boss.deathAnimationTimerInitial) player.x -= 3.6;
+			if (player.x > 0 && boss.deathAnimationTimer == boss.deathAnimationTimerInitial) player.x -= 3;
 			for (let i = 0; i < bossBulletsArray.length - 1; i++) {
 				bossBulletsArray[i].dX -= 0.01;
 				if (bossBulletsArray[i].dY > 0 && bossBulletsArray[i].dY != 0) bossBulletsArray[i].dY -= 0.01;
 				else if (bossBulletsArray[i].dY < 0 && bossBulletsArray[i].dY != 0) bossBulletsArray[i].dY += 0.01;
 			}
-			CreateBossBullet(-canvas.height - canvas.height * (1 / 2), canvas.height / 2, 0.825, 0, false, 5, 1200);
+			CreateBossBullet(-canvas.height - canvas.height * (1 / 2), canvas.height / 2, 1.5, 0, false, 5, 1200);
 			CanvasBackground();
 			player.Draw();
 			DisplayBlood();
