@@ -1,10 +1,10 @@
-# Browser Game
+# BulletBird JS
 
-A side-scrolling browser game made with JavaScript, HTML, and CSS.
+A side-scrolling browser game where you control a bird that shoots bullets. Inspired by games like Flappy Bird and Cuphead, navigate through obstacles with 1 HP and defeat the boss to win. Built with JavaScript, HTML, and CSS, BulletBird JS combines classic gameplay with modern web technology.
 
-You play as a bird that can fire bullets. Win the game by defeating the boss.
+[Check it out here](https://dgee02.github.io/BulletBird-JS/).
 
-Check it out [here](https://dgee02.github.io/browser-game/).
+![](https://raw.githubusercontent.com/dgee02/portfolio-content/main/projects/BulletBird-JS.gif)
 
 ## Acknowledgements
 
